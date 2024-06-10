@@ -1,3 +1,77 @@
-<p>home works!</p>
+<mat-sidenav-container>
+  <mat-sidenav [(opened)]="opened">
+    <div class="sidenav-title">
+      <mat-icon>apps</mat-icon>&nbsp;<h2>Menu</h2>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="sidenav-item" (click)="navigateTo('dashboard')" routerLink="dashboard" routerLinkActive="selected" #dashboard="routerLinkActive">
+      <svg height="100%" width="15pt">
+        <rect width="10pt" height="100%" class="sidebar-shape" />
+      </svg>
+      <mat-icon>dashboard</mat-icon>&nbsp;<h3>Tablero</h3>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="sidenav-item" (click)="navigateTo('inventory')" routerLink="inventory" routerLinkActive="selected" #inventory="routerLinkActive">
+      <svg height="100%" width="15pt">
+        <rect width="10pt" height="100%" class="sidebar-shape" />
+      </svg>
+      <i class="fi fi-rr-inventory-alt"></i><h3>Inventario</h3>
+    </div>
+    <div class="sidenav-item" (click)="navigateTo('customers')" routerLink="customers" routerLinkActive="selected" #customers="routerLinkActive">
+      <svg height="100%" width="15pt">
+        <rect width="10pt" height="100%" class="sidebar-shape" />
+      </svg>
+      <i class="fi fi-rr-address-book"></i><h3>Clientes</h3>
+    </div>
+    <div class="sidenav-item" (click)="navigateTo('employees')" routerLink="employees" routerLinkActive="selected" #employees="routerLinkActive">
+      <svg height="100%" width="15pt">
+        <rect width="10pt" height="100%" class="sidebar-shape" />
+      </svg>
+      <i class="fi fi-rr-file-user"></i><h3>Empleados</h3>
+    </div>
+    <div class="sidenav-item" (click)="navigateTo('sales')" routerLink="sales" routerLinkActive="selected" #sales="routerLinkActive">
+      <svg height="100%" width="15pt">
+        <rect width="10pt" height="100%" class="sidebar-shape" />
+      </svg>
+      <i class="fi fi-rr-dollar"></i><h3>Ventas</h3>
+    </div>
+    <div class="sidenav-item" (click)="navigateTo('debts')" routerLink="debts" routerLinkActive="selected" #debts="routerLinkActive">
+      <svg height="100%" width="15pt">
+        <rect width="10pt" height="100%" class="sidebar-shape" />
+      </svg>
+      <i class="fi fi-rr-donate"></i><h3>Adeudos</h3>
+    </div>
+    <div class="sidenav-item" (click)="navigateTo('reports')" routerLink="reports" routerLinkActive="selected" #reports="routerLinkActive">
+      <svg height="100%" width="15pt">
+        <rect width="10pt" height="100%" class="sidebar-shape" />
+      </svg>
+      <i class="fi fi-rr-file-medical-alt"></i><h3>Reportes</h3>
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar>
+      <button mat-icon-button aria-label="Sidenav button" (click)="toggleSideNav()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>
+        @if (dashboard.isActive) { Tablero }
+        @else if (inventory.isActive) { Inventario }
+        @else if (customers.isActive) { Clientes }
+        @else if (employees.isActive) { Empleados }
+        @else if (sales.isActive) { Ventas }
+        @else if (debts.isActive) { Adeudos }
+        @else if (reports.isActive) { Reportes }
+        @else () { Menu }
+      </span>
+      <span class="spacer"></span>
+      <button mat-icon-button aria-label="Button to profile">
+        <mat-icon>person</mat-icon>
+      </button>
+      <button mat-icon-button aria-label="Button for logout" (click)="logout()">
+        <mat-icon>logout</mat-icon>
+      </button>
+    </mat-toolbar>
+  </mat-sidenav-content>
+</mat-sidenav-container>
 
 <router-outlet/>
