@@ -6,6 +6,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatDialog } from '@angular/material/dialog';
+import { LogoutDialogComponent } from '../dialogs/logout-dialog/logout-dialog.component';
 
 @Component({
   selector: 'app-home',
@@ -27,16 +29,21 @@ export class HomeComponent {
   private auth: Auth = inject(Auth);
   opened: boolean = false;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, public dialog: MatDialog) {}
 
   toggleSideNav(): void {
     this.opened = !this.opened;
   }
 
   logout(): void {
-    signOut(this.auth).then(() => {
-      this.router.navigate(['login']).then();
-    });
+    const dialogResult = this.dialog.open(LogoutDialogComponent);
+    dialogResult.afterClosed().subscribe(result => {
+      if (result === true) {
+        signOut(this.auth).then(() => {
+          this.router.navigate(['login']).then();
+        });
+      }
+    })
   }
 
   navigateTo(path: string): void {
