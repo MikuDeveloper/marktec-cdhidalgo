@@ -12,6 +12,7 @@ mat-card {
   mat-card-content {
     height: 100%;
     .fi {
+      color: var(--base-gray-2);
       font-size: 85px;
     }
   }

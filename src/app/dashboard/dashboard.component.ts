@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,6 +15,9 @@ import { MatCardModule } from '@angular/material/card';
 })
 export class DashboardComponent implements OnInit {
   breakpoint: number = 3;
+
+  constructor(private router: Router) {
+  }
 
   ngOnInit(): void {
     const width = window.innerWidth;
@@ -51,6 +55,10 @@ export class DashboardComponent implements OnInit {
         this.breakpoint = 3;
         break;
     }
+  }
+
+  navigateTo(path: string): void {
+    this.router.navigate([`home/${path}`]).then();
   }
 
 }

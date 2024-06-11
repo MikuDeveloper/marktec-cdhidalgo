@@ -1,6 +1,6 @@
 <mat-grid-list [cols]="breakpoint" rowHeight="2:1" (window:resize)="onResize($event)">
   <mat-grid-tile>
-    <mat-card>
+    <mat-card (click)="navigateTo('inventory')">
       <mat-card-content>
         <i class="fi fi-rr-inventory-alt"></i>
       </mat-card-content>
@@ -10,7 +10,7 @@
     </mat-card>
   </mat-grid-tile>
   <mat-grid-tile>
-    <mat-card>
+    <mat-card (click)="navigateTo('customers')">
       <mat-card-content>
         <i class="fi fi-rr-address-book"></i>
       </mat-card-content>
@@ -20,7 +20,7 @@
     </mat-card>
   </mat-grid-tile>
   <mat-grid-tile>
-    <mat-card>
+    <mat-card (click)="navigateTo('employees')">
       <mat-card-content>
         <i class="fi fi-rr-file-user"></i>
       </mat-card-content>
@@ -30,7 +30,7 @@
     </mat-card>
   </mat-grid-tile>
   <mat-grid-tile>
-    <mat-card>
+    <mat-card (click)="navigateTo('sales')">
       <mat-card-content>
         <i class="fi fi-rr-dollar"></i>
       </mat-card-content>
@@ -40,7 +40,7 @@
     </mat-card>
   </mat-grid-tile>
   <mat-grid-tile>
-    <mat-card>
+    <mat-card (click)="navigateTo('debts')">
       <mat-card-content>
         <i class="fi fi-rr-donate"></i>
       </mat-card-content>
@@ -50,7 +50,7 @@
     </mat-card>
   </mat-grid-tile>
   <mat-grid-tile>
-    <mat-card>
+    <mat-card (click)="navigateTo('reports')">
       <mat-card-content>
         <i class="fi fi-rr-file-medical-alt"></i>
       </mat-card-content>
