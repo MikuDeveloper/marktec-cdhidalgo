@@ -19,8 +19,7 @@ export class AppComponent implements OnDestroy {
 
   constructor(private router: Router) {
     this.userSubscription = this.$user.subscribe((currentUser: User) => {
-      if (currentUser) this.router.navigate(['/home']).then();
-      else this.router.navigate(['/login']).then();
+      if (!currentUser) this.router.navigate(['/login']).then();
     });
   }
 

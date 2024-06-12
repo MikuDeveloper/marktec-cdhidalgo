@@ -1,11 +1,11 @@
 export interface Customer {
   voterKey: string
-  email: string,
-  address: string,
   firstname: string,
   lastname1: string
   lastname2?: string
+  address: string,
   phoneNumber: string,
   facebook: string,
+  email: string,
   status: string
 }

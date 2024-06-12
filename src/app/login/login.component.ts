@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { Auth, AuthError, signInWithEmailAndPassword } from '@angular/fire/auth';
+import { Auth, AuthError, signInWithEmailAndPassword, User, user } from '@angular/fire/auth';
 import { FormsModule, NgForm } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -26,10 +27,17 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 })
 export class LoginComponent {
   private auth: Auth = inject(Auth);
+  $user = user(this.auth)
+  userSubscription: Subscription;
+
   protected hide: boolean = true;
   protected loading: boolean = false;
 
-  constructor(public dialog: MatDialog, private router: Router) {}
+  constructor(public dialog: MatDialog, private router: Router) {
+    this.userSubscription = this.$user.subscribe((currentUser: User) => {
+      if (currentUser) this.router.navigate(['/home']).then();
+    });
+  }
 
   login(form: NgForm): void {
     const values = form.value;

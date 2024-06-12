@@ -1,0 +1,112 @@
+<section class="title">
+  <h2>Registro de clientes</h2>
+</section>
+<section id="registerCustomer">
+  <mat-stepper orientation="vertical" [linear]="true" #registerStepper>
+    <mat-step [stepControl]="personalDataGroup">
+      <form [formGroup]="personalDataGroup" #form1="ngForm">
+        <ng-template matStepLabel>Datos personales del cliente</ng-template>
+        <mat-form-field appearance="outline">
+          <mat-label>Clave de elector</mat-label>
+          <input type="text" matInput formControlName="voterKey" required />
+          <mat-icon matPrefix>assignment_ind</mat-icon>
+          @if (voterKeyControl.hasError('required')) {
+            <mat-error>Este campo es requerido</mat-error>
+          }
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="outline">
+          <mat-label>Nombre(s)</mat-label>
+          <input type="text" matInput formControlName="firstname" required />
+          <mat-icon matPrefix>short_text</mat-icon>
+          @if (firstnameControl.hasError('required')) {
+            <mat-error>Este campo es requerido</mat-error>
+          }
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="outline">
+          <mat-label>Primer apellido</mat-label>
+          <input type="text" matInput formControlName="lastname1" required />
+          <mat-icon matPrefix>short_text</mat-icon>
+          @if (lastname1Control.hasError('required')) {
+            <mat-error>Este campo es requerido</mat-error>
+          }
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="outline">
+          <mat-label>Segundo apellido (opcional)</mat-label>
+          <input type="text" matInput formControlName="lastname2" />
+          <mat-icon matPrefix>short_text</mat-icon>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="outline">
+          <mat-label>Dirección</mat-label>
+          <input type="text" matInput formControlName="address" required />
+          <mat-icon matPrefix>place</mat-icon>
+          @if (addressControl.hasError('required')) {
+            <mat-error>Este campo es requerido</mat-error>
+          }
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperNext>Siguiente</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="contactDataGroup">
+      <form [formGroup]="contactDataGroup" #form2="ngForm">
+        <ng-template matStepLabel>Datos de contacto del cliente</ng-template>
+        <mat-form-field appearance="outline">
+          <mat-label>Número de teléfono</mat-label>
+          <input type="tel" matInput formControlName="phoneNumber" required />
+          <mat-icon matPrefix>phone</mat-icon>
+          <mat-hint>Teléfono de 10 dígitos</mat-hint>
+          @if (phoneNumberControl.hasError('pattern') && !phoneNumberControl.hasError('required')) {
+            <mat-error>Teléfono inválido (10 dígitos requeridos)</mat-error>
+          }
+          @if (phoneNumberControl.hasError('required')) {
+            <mat-error>Este campo es requerido</mat-error>
+          }
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="outline">
+          <mat-label>Nombre en facebook</mat-label>
+          <input type="text" matInput formControlName="facebook" required />
+          <mat-icon matPrefix>facebook</mat-icon>
+          @if (facebookControl.hasError('required')) {
+            <mat-error>Este campo es requerido</mat-error>
+          }
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="outline">
+          <mat-label>Correo electrónico</mat-label>
+          <input type="email" matInput formControlName="email" required />
+          <mat-icon matPrefix>email</mat-icon>
+          @if (emailControl.hasError('email') && !emailControl.hasError('required')) {
+            <mat-error>Formato de email inválido</mat-error>
+          }
+          @if (emailControl.hasError('required')) {
+            <mat-error>Este campo es requerido</mat-error>
+          }
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Volver</button>
+          <button mat-button matStepperNext>Siguiente</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Guardar registro</ng-template>
+      @if (isLoading) {
+        <p>Registrando cliente, no salga de la pantalla...</p>
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+      } @else {
+        <p>La información ha sido capturada, verifique los datos ingresados y prosiga con el registro.</p>
+        <div>
+          <button mat-button matStepperPrevious>Volver</button>
+          <button mat-button (click)="saveData(registerStepper, form1, form2)">Registrar cliente</button>
+        </div>
+      }
+    </mat-step>
+  </mat-stepper>
+</section>
+

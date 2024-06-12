@@ -9,6 +9,7 @@ import { EmployeesComponent } from './employees/employees.component';
 import { SalesComponent } from './sales/sales.component';
 import { DebtsComponent } from './debts/debts.component';
 import { ReportsComponent } from './reports/reports.component';
+import { CustomerRegisterComponent } from './customers/customer-register/customer-register.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -19,6 +20,7 @@ export const routes: Routes = [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'inventory', component: InventoryComponent },
       { path: 'customers', component: CustomersComponent },
+      { path: 'customers/register', component: CustomerRegisterComponent },
       { path: 'employees', component: EmployeesComponent },
       { path: 'sales', component: SalesComponent },
       { path: 'debts', component: DebtsComponent },

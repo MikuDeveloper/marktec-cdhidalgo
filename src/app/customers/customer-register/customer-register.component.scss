@@ -1,0 +1,17 @@
+#registerCustomer {
+  display: flex;
+  justify-content: center;
+  mat-stepper {
+    width: 100%;
+    max-width: 1000px;
+  }
+}
+
+form {
+  margin-top: 10px;
+  mat-form-field {
+    width: 100%;
+    max-width: 350px;
+    margin-bottom: 10px;
+  }
+}

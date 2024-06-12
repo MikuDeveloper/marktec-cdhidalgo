@@ -1,1 +1,34 @@
-<p>customers works!</p>
+<section class="title">
+  <h2>Clientes registrados</h2>
+</section>
+
+<section id="data-container">
+  <div>
+    <table mat-table matSort [dataSource]="customersData">
+      <ng-container matColumnDef="voterKey">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef>Clave</th>
+        <td mat-cell *matCellDef="let element"> {{ element.voterKey }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef>Nombre</th>
+        <td mat-cell *matCellDef="let element">{{ element.firstname }} {{ element.lastname1 }} {{ element.lastname2 }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef>Estatus</th>
+        <td mat-cell *matCellDef="let element"> {{ element.status }} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [length]="CUSTOMERS.length"
+                   [pageSize]="10"
+                   showFirstLastButtons
+                   aria-label="Select page of customers">
+    </mat-paginator>
+  </div>
+</section>
+
+<button class="fab" type="button" title="Registrar cliente" mat-fab (click)="goToRegister()"><mat-icon>add</mat-icon></button>
