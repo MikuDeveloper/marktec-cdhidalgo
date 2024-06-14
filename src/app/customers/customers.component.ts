@@ -6,7 +6,7 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Customer } from '../../entities/customer';
 import { collection, Firestore, getDocs, FirestoreError } from '@angular/fire/firestore';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { MatSortModule } from '@angular/material/sort';
+import { MatSort, MatSortModule } from '@angular/material/sort';
 
 @Component({
   selector: 'app-customers',
@@ -26,10 +26,11 @@ export class CustomersComponent implements OnInit {
   private firestore = inject(Firestore);
   protected CUSTOMERS: Customer[] = [];
 
-  displayedColumns: string[] = ['voterKey', 'name', 'status'];
+  displayedColumns: string[] = ['voterKey', 'firstname', 'status'];
   customersData: MatTableDataSource<Customer> = new MatTableDataSource<Customer>(this.CUSTOMERS);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
   constructor(private router: Router) {}
 
@@ -38,6 +39,7 @@ export class CustomersComponent implements OnInit {
       .then((data) => {
         data.forEach(doc => this.CUSTOMERS.push(<Customer> doc.data()));
         this.customersData.paginator = this.paginator;
+        this.customersData.sort = this.sort;
       })
       .catch((error: FirestoreError) => {
         console.log(error.message)
