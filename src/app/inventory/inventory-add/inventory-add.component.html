@@ -1,0 +1,56 @@
+<section class="title">
+  <h2>Añadir producto a inventario</h2>
+</section>
+
+<section id="add-to-inventory-container">
+  <mat-stepper orientation="vertical" [linear]="false" #addToInventoryStepper>
+    <mat-step>
+      <form>
+        <ng-template matStepLabel>Datos generales del producto</ng-template>
+
+        <div>
+          <button mat-button matStepperNext>Siguiente</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <form>
+        <ng-template matStepLabel>Estado del producto</ng-template>
+
+        <div>
+          <button mat-button matStepperPrevious>Volver</button>
+          <button mat-button matStepperNext>Siguiente</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <form>
+        <ng-template matStepLabel>Ubicación y precio</ng-template>
+
+        <div>
+          <button mat-button matStepperPrevious>Volver</button>
+          <button mat-button matStepperNext>Siguiente</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Fotos del producto</ng-template>
+      <p>Agregue al menos dos fotos del producto desde diferentes ángulos.</p>
+      <div>
+        <button mat-stroked-button type="button"><mat-icon>upload</mat-icon>Subir foto</button>
+      </div>
+      <div>
+        <button mat-button matStepperPrevious>Volver</button>
+        <button mat-button matStepperNext>Siguiente</button>
+      </div>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Añadir producto a inventario</ng-template>
+      <p>La información ha sido capturada, verifique los datos ingresados para añadir el producto al inventario.</p>
+      <div>
+        <button mat-button matStepperPrevious>Volver</button>
+        <button mat-raised-button matStepperNext><mat-icon>check</mat-icon>Añadir producto</button>
+      </div>
+    </mat-step>
+  </mat-stepper>
+</section>

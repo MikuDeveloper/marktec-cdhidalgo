@@ -1,0 +1,8 @@
+#add-to-inventory-container {
+  display: flex;
+  justify-content: center;
+  mat-stepper {
+    width: 100%;
+    max-width: 1000px;
+  }
+}
